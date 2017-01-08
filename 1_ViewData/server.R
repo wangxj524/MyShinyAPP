@@ -1,4 +1,5 @@
 library(shiny)
+source("helpers.R")
 
 # Define a server for the Shiny app
 shinyServer(function(input, output) {
