@@ -1,4 +1,5 @@
 library(shiny)
+source("helpers.R")
 
 shinyUI(fluidPage(
     title = 'Examples of DataTables',
