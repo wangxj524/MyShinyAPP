@@ -5,7 +5,8 @@ OverlapHist <- function(a, b, breaks = NULL, xlim = NULL, ylim = NULL,
                         color.list = c(rgb(1, 0, 0, alpha=alpha), 
                                        rgb(0, 1, 0, alpha=alpha)),
                         leg1 = NULL, leg2 = NULL,
-                        legsite = c("topright", "topleft")[1]
+                        legsite = c("topright", "topleft")[1],
+                        dist = NULL
 ){
     if(!(is.null(breaks))){
         ahist=hist(a, breaks=breaks, plot=FALSE)
@@ -14,8 +15,11 @@ OverlapHist <- function(a, b, breaks = NULL, xlim = NULL, ylim = NULL,
         ahist=hist(a, plot=FALSE)
         bhist=hist(b, plot=FALSE)
         
-        dist = ahist$breaks[2]-ahist$breaks[1]
-        breaks = seq(min(ahist$breaks,bhist$breaks),max(ahist$breaks,bhist$breaks),dist)
+        if(is.null(dist)){
+            dist = ahist$breaks[2]-ahist$breaks[1]
+        }
+        breaks = seq(min(ahist$breaks,bhist$breaks),
+                     max(ahist$breaks,bhist$breaks)+dist,dist)
     }
     
     if(is.null(xlim)){

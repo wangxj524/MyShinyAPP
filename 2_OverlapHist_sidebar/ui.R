@@ -16,6 +16,9 @@ shinyUI(fluidPage(
             div(style="color:blue;font-size:18px", "2. Legend Panel"),
             textInput("leg1", "Legend 1"),
             textInput("leg2", "Legend 2"),
+            radioButtons("legsite", "Legend Site:",
+                         choices = list("topright", "topleft"),
+                         selected = "topright", inline = TRUE),
             
             #标题设置区
             div(style="color:blue;font-size:18px", "3. Title Panel"),
@@ -37,7 +40,11 @@ shinyUI(fluidPage(
                          choices = list("O"="o", "L"="l", "7"="7", "C"="c",
                                         "U"="u", "]"="]"),
                          selected = "o", inline = TRUE),
-            helpText('This parameter is valid when checked "Plot Box"')
+            helpText('This parameter is valid when checked "Plot Box"'),
+            
+            div(style="color:blue;font-size:18px", "6. Breaks Panel"),
+            textInput("breakstep", 'Breaks Step'),
+            helpText("Please input a number.")
             #执行区
             # submitButton("PLOT", icon = icon("glyphicon glyphicon-chevron-right",
             #                                  lib = "glyphicon"))

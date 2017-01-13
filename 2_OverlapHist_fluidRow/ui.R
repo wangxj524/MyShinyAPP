@@ -23,19 +23,21 @@ shinyUI(fluidPage(
                helpText('This parameter is valid when checked "Plot Box"')
         ),
         column(4,
-               div(style="color:blue;font-size:18px", "3. Download Panel")
+               div(style="color:blue;font-size:18px", "4. Breaks Panel"),
+               textInput("breakstep", 'Breaks Step'),
+               helpText("Please input a number.")
                )
     ),
     
     fluidRow(
-        column(4,
+        column(3,
                #标题设置区
                div(style="color:blue;font-size:18px", "4. Title Panel"),
                textInput("Main", "Title"),
                textInput("Xlab", "Xlab name", width = '60%'),
                textInput("Ylab", "Ylab name", width = '60%')
         ),
-        column(4,
+        column(3,
                #颜色选择区
                div(style="color:blue;font-size:18px", "5. Color Panel"),
                sliderInput("alpha", "Alpha", min = 0, max = 1, value = 0.5, 
@@ -43,14 +45,16 @@ shinyUI(fluidPage(
                textInput("color1", "Color 1:", value = "#FF0000", width = '60%'),
                textInput("color2", "Color 2:", value = "blue", width = '60%')
         ),
-        column(4,
+        column(3,
                div(style="color:blue;font-size:18px", "6. Legend Panel"),
                textInput("leg1", "Legend 1:"),
                textInput("leg2", "Legend 2:"),
                radioButtons("legsite", "Legend Site:",
                             choices = list("topright", "topleft"),
                             selected = "topright", inline = TRUE)
-        )
+        ),
+        column(3,
+               div(style="color:blue;font-size:18px", "7. Download Panel"))
     ),
     fluidRow(
         column(2),

@@ -63,8 +63,17 @@ shinyServer(function(input, output) {
         return(tem)
     })
     
+    bstep <- reactive({
+        if (input$breakstep == ""){
+            tem <- NULL
+        }else{
+            tem <- as.numeric(input$breakstep)
+        }
+        return(tem)
+    })
+    
     output$overlabHist <- renderPlot({
-        OverlapHist(a = data1(), b = data2(), bty = input$bty,
+        OverlapHist(a = data1(), b = data2(), bty = input$bty, dist = bstep(),
                     xlab = xlabvalue(), ylab = ylabvalue(), main = input$Main,
                     color.list = c(col1(), col2()), plotbox = input$box,
                     legsite = input$legsite, leg1 = leg1name(), leg2 = leg2name())
