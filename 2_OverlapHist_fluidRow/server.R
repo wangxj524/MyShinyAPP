@@ -72,11 +72,39 @@ shinyServer(function(input, output) {
         return(tem)
     })
     
+    limxu <- reactive({
+        if (input$xlimu == ""){
+            tem <- NULL
+        }else{
+            tem <- as.numeric(input$xlimu)
+        }
+        return(tem)
+    })
+    
+    limxl <- reactive({
+        if (input$xliml == ""){
+            tem <- NULL
+        }else{
+            tem <- as.numeric(input$xliml)
+        }
+        return(tem)
+    })
+    
+    limyu <- reactive({
+        if (input$ylimu == ""){
+            tem <- NULL
+        }else{
+            tem <- as.numeric(input$ylimu)
+        }
+        return(tem)
+    })
+    
     output$overlabHist <- renderPlot({
         OverlapHist(a = data1(), b = data2(), bty = input$bty, dist = bstep(),
                     xlab = xlabvalue(), ylab = ylabvalue(), main = input$Main,
                     color.list = c(col1(), col2()), plotbox = input$box,
-                    legsite = input$legsite, leg1 = leg1name(), leg2 = leg2name())
+                    legsite = input$legsite, leg1 = leg1name(), leg2 = leg2name(),
+                    xlimu = limxu(), xliml = limxl(), ylimu = limyu())
     })
     output$text <- renderText({
         paste(input$bty)

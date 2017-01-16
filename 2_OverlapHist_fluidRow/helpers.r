@@ -6,7 +6,7 @@ OverlapHist <- function(a, b, breaks = NULL, xlim = NULL, ylim = NULL,
                                        rgb(0, 1, 0, alpha=alpha)),
                         leg1 = NULL, leg2 = NULL,
                         legsite = c("topright", "topleft")[1],
-                        dist = NULL
+                        dist = NULL, xlimu = NULL, xliml = NULL, ylimu = NULL
 ){
     if(!(is.null(breaks))){
         ahist=hist(a, breaks=breaks, plot=FALSE)
@@ -14,20 +14,27 @@ OverlapHist <- function(a, b, breaks = NULL, xlim = NULL, ylim = NULL,
     } else {
         ahist=hist(a, plot=FALSE)
         bhist=hist(b, plot=FALSE)
-        
-        if(is.null(dist)){
-            dist = ahist$breaks[2]-ahist$breaks[1]
-        }
-        breaks = seq(min(ahist$breaks,bhist$breaks),
-                     max(ahist$breaks,bhist$breaks)+dist,dist)
     }
     
     if(is.null(xlim)){
         xlim = c(floor(min(ahist$breaks,bhist$breaks)), 
                  ceiling(max(ahist$breaks,bhist$breaks)))
+        if(!(is.null(xlimu))){
+            xlim[2] <- xlim[2] + xlimu
+        }
+        if(!(is.null(xliml))){
+            xlim[1] <- xlim[1] - xliml
+        }
     }
+    if(is.null(dist)){
+        dist = ahist$breaks[2]-ahist$breaks[1]
+    }
+    breaks = seq(xlim[1], xlim[2] + dist, dist)
     if(is.null(ylim)){
         ylim = c(0, ceiling(max(ahist$counts, bhist$counts)))
+        if(!(is.null(ylimu))){
+            ylim[2] <- ylim[2] + ylimu
+        }
     }
     
     if (is.null(xlab)){

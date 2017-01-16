@@ -42,9 +42,16 @@ shinyUI(fluidPage(
                          selected = "o", inline = TRUE),
             helpText('This parameter is valid when checked "Plot Box"'),
             
+            #breaks step
             div(style="color:blue;font-size:18px", "6. Breaks Panel"),
             textInput("breakstep", 'Breaks Step'),
-            helpText("Please input a number.")
+            helpText("Please input a number."),
+            
+            #limit
+            div(style="color:blue;font-size:18px", "7. Limit Panel"),
+            textInput("xlimu", 'X upper limit +'),
+            textInput("xliml", 'X lower limit -'),
+            textInput("ylimu", 'Y upper limit +')
             #执行区
             # submitButton("PLOT", icon = icon("glyphicon glyphicon-chevron-right",
             #                                  lib = "glyphicon"))
