@@ -54,6 +54,7 @@ shinyUI(fluidPage(
             textInput("ylimu", 'Y upper limit +'),
             
             #download
+            div(style="color:blue;font-size:18px", "8. Download Panel"),
             numericInput("width", "Width:(inch)", 8, min = 5, max = 30,
                          width = '70%'),
             numericInput("height", "Height:(inch)", 6, min = 4, max = 30,
