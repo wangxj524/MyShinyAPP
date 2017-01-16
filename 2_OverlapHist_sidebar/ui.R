@@ -51,7 +51,16 @@ shinyUI(fluidPage(
             div(style="color:blue;font-size:18px", "7. Limit Panel"),
             textInput("xlimu", 'X upper limit +'),
             textInput("xliml", 'X lower limit -'),
-            textInput("ylimu", 'Y upper limit +')
+            textInput("ylimu", 'Y upper limit +'),
+            
+            #download
+            numericInput("width", "Width:(inch)", 8, min = 5, max = 30,
+                         width = '70%'),
+            numericInput("height", "Height:(inch)", 6, min = 4, max = 30,
+                         width = '70%'),
+            radioButtons('format', 'Document format', c('pdf', 'png', 'jpg'),
+                         inline = TRUE),
+            downloadButton("download", label = "Download")
             #执行区
             # submitButton("PLOT", icon = icon("glyphicon glyphicon-chevron-right",
             #                                  lib = "glyphicon"))

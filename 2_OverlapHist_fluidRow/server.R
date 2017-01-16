@@ -109,5 +109,30 @@ shinyServer(function(input, output) {
     output$text <- renderText({
         paste(input$bty)
     })
+    
+    output$download <- downloadHandler(
+        filename = function() {
+            paste('myplot', sep = '.', switch(
+                input$format, pdf = 'pdf', png = 'png', jpg = 'jpg'
+            ))
+        },
+        content = function(file){
+            if (input$format == "pdf"){
+                pdf(file = file, width = input$width, height = input$height)
+            }else if(input$format == "png"){
+                png(filename = file, width = input$width, height = input$height,
+                    units = "in", res = 600)
+            }else if(input$format == "jpg"){
+                jpeg(filename = file, width = input$width, height = input$height,
+                    units = "in", res = 600)
+            }
+            OverlapHist(a = data1(), b = data2(), bty = input$bty, dist = bstep(),
+                        xlab = xlabvalue(), ylab = ylabvalue(), main = input$Main,
+                        color.list = c(col1(), col2()), plotbox = input$box,
+                        legsite = input$legsite, leg1 = leg1name(), leg2 = leg2name(),
+                        xlimu = limxu(), xliml = limxl(), ylimu = limyu())
+            dev.off()
+        }
+    )
 })
 
