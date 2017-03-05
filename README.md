@@ -19,4 +19,6 @@
 
    `shiny::runGitHub("MyShinyApp", "wangxj524", subdir = "3_OvonicBarplot/")`
 
+   `shiny::runGitHub("MyShinyApp", "wangxj524", subdir = "3_OvonicBarplot_dashboard/")`
+
 
